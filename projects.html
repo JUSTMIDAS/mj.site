@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Hemjay.Dev</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Dancing+Script:wght@400..700&family=Marck+Script&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container" id="home">
+        <div class="icons">
+            <div class="icon" style="top: 10%; left: 10%;"><i class="fas fa-lightbulb"></i></div>
+            <div class="icon" style="top: 20%; left: 70%;"><i class="fas fa-smile"></i></div>
+            <div class="icon" style="top: 30%; left: 30%;"><i class="fas fa-bolt"></i></div>
+            <div class="icon" style="top: 40%; left: 80%;"><i class="fas fa-paper-plane"></i></div>
+            <div class="icon" style="top: 50%; left: 20%;"><i class="fas fa-lightbulb"></i></div>
+            <div class="icon" style="top: 60%; left: 60%;"><i class="fas fa-smile"></i></div>
+            <div class="icon" style="top: 70%; left: 40%;"><i class="fas fa-paper-plane"></i></div>
+            <div class="icon" style="top: 80%; left: 90%;"><i class="fas fa-bolt"></i></div>
+            <div class="icon" style="top: 15%; left: 25%;"><i class="fas fa-code"></i></div>
+            <div class="icon" style="top: 25%; left: 85%;"><i class="fas fa-laptop"></i></div>
+            <div class="icon" style="top: 35%; left: 15%;"><i class="fas fa-cogs"></i></div>
+            <div class="icon" style="top: 45%; left: 75%;"><i class="fas fa-rocket"></i></div>
+            <div class="icon" style="top: 55%; left: 35%;"><i class="fas fa-cloud"></i></div>
+            <div class="icon" style="top: 65%; left: 95%;"><i class="fas fa-database"></i></div>
+            <div class="icon" style="top: 75%; left: 20%;"><i class="fas fa-terminal"></i></div>
+            <div class="icon" style="top: 85%; left: 50%;"><i class="fas fa-globe"></i></div>
+        </div>
+    </div>
+
+    <nav class="nav-menu">
+        <div class="nav-logo">mj</div>
+        <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="section-projects" id="projects">
+        <h4>ALL MY PROJECTS</h4>
+        <h2>PROJECT PORTFOLIO</h2>
+        <div class="project-filters">
+            <select class="filter-select" onchange="filterProjects(this.value)">
+                <option value="all" selected>All Technologies</option>
+                <option value="react">React</option>
+                <option value="nodejs">Node.js</option>
+                <option value="python">Python</option>
+                <option value="typescript">TypeScript</option>
+            </select>
+            <button class="sort-button" onclick="sortProjects('date')">Sort by Date</button>
+        </div>
+        <div class="project-controls">
+            <select class="project-select" onchange="toggleProjects(this.value)">
+                <option value="" disabled selected>Choose Project's Dynamic</option>
+                <option value="normal">Normal View</option>
+                <option value="list">List View</option>
+                <option value="grid">Grid View</option>
+            </select>
+        </div>
+
+        <div class="project-card-container normal">
+            <div class="project-card" data-tech="typescript,graphql,nodejs,postgresql" data-date="2024-10-20">
+                <a href="https://example.com/demo10" class="project-link" target="_blank">
+                    <img src="IMG_2040.png" alt="Event Booking System" loading="lazy">
+                    <h3>Event Booking System</h3>
+                    <p>An event management platform with booking and payment features.</p>
+                    <p><strong>Tech Stack:</strong> TypeScript, GraphQL, Node.js, PostgreSQL</p>
+                    <p>Hosted on Vercel</p>
+                    <a href="https://example.com/demo10" class="demo-link">View Live Demo</a>
+                </a>
+                <span class="case-study-link" onclick="showCaseStudy('Event Booking System')">Read Case Study</span>
+            </div>
+            <div class="project-card" data-tech="react,nodejs,mongodb" data-date="2024-09-10">
+                <a href="https://example.com/demo9" class="project-link" target="_blank">
+                    <img src="IMG_2040.png" alt="Fitness Tracker" loading="lazy">
+                    <h3>Fitness Tracker</h3>
+                    <p>A mobile-responsive fitness app for logging workouts and tracking progress.</p>
+                    <p><strong>Tech Stack:</strong> React, Node.js, MongoDB, Chart.js</p>
+                    <p>Deployed on Netlify</p>
+                    <a href="https://example.com/demo9" class="demo-link">View Live Demo</a>
+                </a>
+                <span class="case-study-link" onclick="showCaseStudy('Fitness Tracker')">Read Case Study</span>
+            </div>
+            <div class="project-card" data-tech="python,flask,postgresql,docker" data-date="2024-08-01">
+                <a href="https://example.com/demo8" class="project-link" target="_blank">
+                    <img src="IMG_2040.png" alt="Inventory Management System" loading="lazy">
+                    <h3>Inventory Management System</h3>
+                    <p>A system for tracking inventory with CRUD operations, containerized with Docker.</p>
+                    <p><strong>Tech Stack:</strong> Python, Flask, Docker, PostgreSQL</p>
+                    <p>Hosted on AWS ECS</p>
+                    <a href="https://example.com/demo8" class="demo-link">View Live Demo</a>
+                </a>
+                <span class="case-study-link" onclick="showCaseStudy('Inventory Management System')">Read Case Study</span>
+            </div>
+            <div class="project-card" data-tech="nodejs,react,postgresql" data-date="2024-06-15">
+                <a href="https://example.com/demo7" class="project-link" target="_blank">
+                    <img src="IMG_2040.png" alt="Chat Application" loading="lazy">
+                    <h3>Chat Application</h3>
+                    <p>A real-time chat app with WebSocket integration and group chat support.</p>
+                    <p><strong>Tech Stack:</strong> Node.js, Socket.io, React, PostgreSQL</p>
+                    <p>Deployed on Render</p>
+                    <a href="https://example.com/demo7" class="demo-link">View Live Demo</a>
+                </a>
+                <span class="case-study-link" onclick="showCaseStudy('Chat Application')">Read Case Study</span>
+            </div>
+            <div class="project-card" data-tech="nodejs,react,mongodb" data-date="2024-04-05">
+                <a href="https://example.com/demo6" class="project-link" target="_blank">
+                    <img src="IMG_2040.png" alt="Blog Platform" loading="lazy">
+                    <h3>Blog Platform</h3>
+                    <p>A CMS-powered blog platform with user authentication and SEO optimization.</p>
+                    <p><strong>Tech Stack:</strong> Node.js, Express, MongoDB, React</p>
+                    <p>Hosted on AWS</p>
+                    <a href="https://example.com/demo6" class="demo-link">View Live Demo</a>
+                </a>
+                <span class="case-study-link" onclick="showCaseStudy('Blog Platform')">Read Case Study</span>
+            </div>
+            <div class="project-card" data-tech="javascript,html,css" data-date="2024-02-10">
+                <a href="https://example.com/demo5" class="project-link" target="_blank">
+                    <img src="IMG_2040.png" alt="Weather App" loading="lazy">
+                    <h3>Weather App</h3>
+                    <p>A weather forecasting app with a clean UI and dynamic charts using a public API.</p>
+                    <p><strong>Tech Stack:</strong> JavaScript, HTML, CSS, OpenWeather API</p>
+                    <p>Deployed on Netlify</p>
+                    <a href="https://example.com/demo5" class="demo-link">View Live Demo</a>
+                </a>
+                <span class="case-study-link" onclick="showCaseStudy('Weather App')">Read Case Study</span>
+            </div>
+            <div class="project-card" data-tech="react,nodejs,mongodb" data-date="2023-12-20">
+                <a href="https://example.com/demo4" class="project-link" target="_blank">
+                    <img src="IMG_2040.png" alt="Social Media Dashboard" loading="lazy">
+                    <h3>Social Media Dashboard</h3>
+                    <p>A dashboard for tracking social media metrics with REST API integration.</p>
+                    <p><strong>Tech Stack:</strong> React, Node.js, Express, MongoDB</p>
+                    <p>Hosted on Heroku</p>
+                    <a href="https://example.com/demo4" class="demo-link">View Live Demo</a>
+                </a>
+                <span class="case-study-link" onclick="showCaseStudy('Social Media Dashboard')">Read Case Study</span>
+            </div>
+            <div class="project-card" data-tech="html,css,javascript" data-date="2023-10-01">
+                <a href="https://example.com/demo3" class="project-link" target="_blank">
+                    <img src="IMG_2040.png" alt="Portfolio Website" loading="lazy">
+                    <h3>Portfolio Website</h3>
+                    <p>A personal portfolio showcasing projects and skills with smooth animations.</p>
+                    <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript, Vite</p>
+                    <p>Deployed on GitHub Pages</p>
+                    <a href="https://example.com/demo3" class="demo-link">View Live Demo</a>
+                </a>
+                <span class="case-study-link" onclick="showCaseStudy('Portfolio Website')">Read Case Study</span>
+            </div>
+            <div class="project-card" data-tech="typescript,graphql,postgresql" data-date="2023-08-15">
+                <a href="https://example.com/demo2" class="project-link" target="_blank">
+                    <img src="IMG_2040.png" alt="Task Management App" loading="lazy">
+                    <h3>Task Management App</h3>
+                    <p>A collaborative task manager with real-time updates and role-based access control.</p>
+                    <p><strong>Tech Stack:</strong> TypeScript, GraphQL, PostgreSQL, Vite</p>
+                    <p>Hosted on AWS</p>
+                    <a href="https://example.com/demo2" class="demo-link">View Live Demo</a>
+                </a>
+                <span class="case-study-link" onclick="showCaseStudy('Task Management App')">Read Case Study</span>
+            </div>
+            <div class="project-card" data-tech="react,nodejs,mongodb" data-date="2023-06-01">
+                <a href="https://justmidas.github.io/ironpulse-/" class="project-link" target="_blank">
+                    <img src="projectfolder/ironpulse.png" alt="E-Commerce Platform" loading="lazy">
+                    <h3>home workout </h3>
+                    <p>A responsive e-commerce website with user authentication, product filtering, and payment integration.</p>
+                    <p><strong>Tech Stack:</strong> React, Node.js, MongoDB, Tailwind CSS</p>
+                    <p>Deloyed on Netlify</p>
+                    <a href="https://justmidas.github.io/ironpulse-/" class="demo-link">View Live Demo</a>
+                </a>
+                <span class="case-study-link" onclick="showCaseStudy('E-Commerce Platform')">Read Case Study</span>
+            </div>
+        </div>
+    </section>
+
+    <div id="caseStudyModal" class="contact-popup" style="width: 80%; max-width: 800px; height: auto;">
+        <span class="close-popup" id="closeCaseStudy"><i class="fas fa-times"></i></span>
+        <div id="caseStudyContent" style="padding: 20px; overflow-y: auto; max-height: 80vh;">
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+     <section class="testimonials-section">
+        <h4>WHAT CLIENTS SAY</h4>
+        <h2>CLIENT TESTIMONIALS</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="star-rating">★★★★★</div>
+                <p class="testimonial-text">"Hemjay's attention to detail in full-stack architecture is exemplary. He delivered an exceptional project that exceeded our expectations."</p>
+                <p class="testimonial-author">— Sarah Johnson</p>
+                <p class="testimonial-company">Senior Developer, Tech Innovations LLC</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="star-rating">★★★★★</div>
+                <p class="testimonial-text">"Delivered a robust e-commerce solution ahead of schedule. Communication was excellent throughout the entire project."</p>
+                <p class="testimonial-author">— Michael Chen</p>
+                <p class="testimonial-company">Project Manager, Digital Commerce Co.</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="star-rating">★★★★★</div>
+                <p class="testimonial-text">"Working with Hemjay was a game-changer. His expertise in React and Node.js transformed our platform's performance."</p>
+                <p class="testimonial-author">— Emily Rodriguez</p>
+                <p class="testimonial-company">CTO, StartUp Ventures</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Hemjay. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
