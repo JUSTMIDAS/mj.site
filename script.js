@@ -242,7 +242,7 @@ const myProjects = [
         description: "A fitness website showcasing workout plans and gym equipment.",
         tech: "html,tailwind,js",
         date: "2026-02-02",
-        image: "/projectfolder/ironpulse.png",
+        image: "projectfolder/ironpulse.png",
         url: "https://example.com/demo9",
         host: "Netlify",
         stackText: "HTML, Tailwind CSS, JavaScript"
@@ -252,7 +252,7 @@ const myProjects = [
         description: "A portfolio website for a designer with interactive galleries.",
         tech: "react,tailwind,mongodb",
         date: "2026-0git1-14",
-        image: "/projectfolder/naahla.png",
+        image: "projectfolder/naahla.png",
         url: "https://naahla.vercel.app/",
         host: "Vercel",
         stackText: "React, Node.js, MongoDB, Chart.js"
