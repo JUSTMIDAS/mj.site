@@ -1,7 +1,7 @@
 
 
 
-::root {
+:root {
     --icon-size: 40px;
     font-family: sans-serif;
 }
@@ -43,6 +43,7 @@ body {
     z-index: -9999 !important;
     /* Move it to the very bottom layer */
     pointer-events: none;
+
     background: transparent;
     display: block !important;
 }
@@ -83,20 +84,30 @@ body {
 }
 
 .text {
-    font-size: 6rem;
-    font-weight: bold;
-    color: #1e3a8a;
+    
+    color: #f4f4f5;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     user-select: none;
-    margin: 50px auto;
+    margin: 10px 10px;
+    padding: 5rem;
     max-width: 100%;
+ 
     word-wrap: break-word;
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.5s ease, transform 0.5s ease;
     position: relative;
     z-index: 2;
+    background-color:#1e3a8a;
+}
+.text .md{
+    width: 100%;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-size: 1.4rem;
+
 }
 
 .text.visible {
@@ -131,31 +142,6 @@ body.dark-mode .text {
 
 .text span.squish {
     transform: scaleY(0.5);
-}
-
-.url-bar {
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: #ccc;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    z-index: 20;
-    box-sizing: border-box;
-    opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.url-bar.visible {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-body.dark-mode .url-bar {
-    background: #4a5568;
-    color: #e2e8f0;
 }
 
 .nav-menu {
@@ -294,10 +280,21 @@ body.dark-mode .hamburger {
     .hamburger {
         display: block;
     }
+
+    .text {
+        padding: 3rem 1rem;
+        font-size: 1rem;
+    }
+    .section-about .text {
+        width: 100%;
+    }
+    .section-about h2 {
+        font-size: 2rem;
+    }
 }
 
 .section-about {
-    min-height: 100vh;
+    min-height: 100%;
     font-size: 1.2rem;
     max-width: 100%;
     box-sizing: border-box;
@@ -310,6 +307,9 @@ body.dark-mode .hamburger {
     justify-content: center;
     align-items: center;
     padding: 60px 20px;
+    flex-wrap: wrap;
+  
+    margin: 0;
 }
 .section-about button {
     text-decoration: none;
@@ -351,7 +351,8 @@ body.dark-mode .hamburger {
 .section-about .text {
     font-family: serif;
     font-size: 2rem;
-    width: 45%;
+    max-width: 600px;
+  
 }
 
 /* Availability button styles */
@@ -477,6 +478,7 @@ body.dark-mode .section-about h4 {
     justify-content: center;
     align-items: center;
     gap: 30px;
+   
 }
 .content ul {
     list-style: none;

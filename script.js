@@ -144,7 +144,7 @@ const myProjects = [
     },
     {
         title: "Fitness Tracker",
-        description: "A mobile-responsive fitness app for logging workouts.",
+        description: "A mobile-responsive fitness app for logging workouts and tracking progress.",
         tech: "react,nodejs,mongodb",
         date: "2020-09-10",
         image: "IMG_2040.png",
@@ -154,7 +154,7 @@ const myProjects = [
     },
     {
         title: "shop it",
-        description: "A mobile-responsive fitness app for logging workouts.",
+        description: "An e-commerce platform for online shopping with cart and payment integration.",
         tech: "react,nodejs,mongodb",
         date: "2021-09-10",
         image: "IMG_2040.png",
@@ -164,7 +164,7 @@ const myProjects = [
     },
     {
         title: "iron pulse ",
-        description: "A mobile-responsive fitness app for logging workouts.",
+        description: "A fitness website showcasing workout plans and gym equipment.",
         tech: "html,tailwind,js",
         date: "2026-2-2",
         image: "/projectfolder/ironpulse.png",
@@ -174,7 +174,7 @@ const myProjects = [
     },
     {
         title: "naahla",
-        description: "A mobile-responsive fitness app for logging workouts.",
+        description: "A portfolio website for a designer with interactive galleries.",
         tech: "react,tailwind,mongodb",
         date: "2026-1-14",
         image: "/projectfolder/naahla.png",
@@ -196,19 +196,22 @@ function renderAllProjects() {
     grid.innerHTML = ""; // Clear existing static cards
 
     myProjects.forEach(proj => {
-        grid.innerHTML += `
-            <div class="project-card" data-tech="${proj.tech}" data-date="${proj.date}">
-                <a href="${proj.url}" class="project-link" target="_blank">
-                    <img src="${proj.image}" alt="${proj.title}" loading="lazy">
-                    <h3>${proj.title}</h3>
-                    <p>${proj.description}</p>
-                    <p><strong>Tech Stack:</strong> ${proj.stackText}</p>
-                    <p>Hosted on ${proj.host}</p>
-                    <a href="${proj.url}" class="demo-link">View Live Demo</a>
-                </a>
-                <span class="case-study-link" onclick="showCaseStudy('${proj.title}')">Read Case Study</span>
-            </div>
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.setAttribute('data-tech', proj.tech);
+        card.setAttribute('data-date', proj.date);
+        card.innerHTML = `
+            <a href="${proj.url}" class="project-link" target="_blank">
+                <img src="${proj.image}" alt="${proj.title}" loading="lazy">
+                <h3>${proj.title}</h3>
+                <p>${proj.description}</p>
+                <p><strong>Tech Stack:</strong> ${proj.stackText}</p>
+                <p>Hosted on ${proj.host}</p>
+                <a href="${proj.url}" class="demo-link">View Live Demo</a>
+            </a>
+            <span class="case-study-link" onclick="showCaseStudy('${proj.title}')">Read Case Study</span>
         `;
+        grid.appendChild(card);
     });
 }
 
@@ -247,15 +250,19 @@ function displayRecent() {
     list.innerHTML = ""; 
 
     recent.forEach(proj => {
-        list.innerHTML += `
-            <div class="project-card" data-tech="${proj.tech || ''}" data-date="${proj.date}">
-                <div class="project-link">
-                    <img src="${proj.image}" alt="${proj.title}">
-                    <h3>${proj.title}</h3>
-                    <p>${proj.description}</p>
-                    <a href="${proj.url}" class="demo-link" target="_blank">View Live Demo</a>
-                </div>
-            </div>`;
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.setAttribute('data-tech', proj.tech || '');
+        card.setAttribute('data-date', proj.date);
+        card.innerHTML = `
+            <div class="project-link">
+                <img src="${proj.image}" alt="${proj.title}">
+                <h3>${proj.title}</h3>
+                <p>${proj.description}</p>
+                <a href="${proj.url}" class="demo-link" target="_blank">View Live Demo</a>
+            </div>
+        `;
+        list.appendChild(card);
     });
 }
 

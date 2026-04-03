@@ -16,9 +16,9 @@
 
 <body>
     <div class="container" id="home">
-        
+
         <div class="icons">
-          
+
             <div class="icon" style="top: 10%; left: 10%;"><i class="fas fa-lightbulb"></i></div>
             <div class="icon" style="top: 20%; left: 70%;"><i class="fas fa-smile"></i></div>
             <div class="icon" style="top: 30%; left: 30%;"><i class="fas fa-bolt"></i></div>
@@ -44,39 +44,46 @@
 
 
 
-    <nav class="nav-menu">
-        <div class="nav-logo">mj</div>
-        <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
-          <button onclick="iconDisable('visible')">disable icon</button>
-        <div class="hamburger"><i class="fas fa-bars"></i></div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="timeline.html">Education</a>
-            <a href="timeline.html#work-history">Work</a>
-            <a href="#services">Services</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
+    <header>
+        <nav class="nav-menu">
+            <div class="nav-logo">mj</div>
+            <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+            <button onclick="iconDisable('visible')">disable icon</button>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="timeline.html">Education</a>
+                <a href="timeline.html#work-history">Work</a>
+                <a href="#services">Services</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
 
 
 
 
 
 
-    <section class="section-about" id="about">
+    <main>
+        <section class="section-about" id="about">
         <div class="text" id="animatedText">
-            <a href="#contact" class="availability-btn">
-                <span class="status-dot">.</span> Available for work
-            </a>
+
             <div class="mt">
                 <span>H</span><span>E</span><span>M</span><span>J</span><span>A</span><span>Y</span>
                 <span class="question-mark">?</span>
             </div>
-            <h4>Web developer and digital artist</h4>
-            <p>Hello! I'm Hemjay, a full stack developer based in Nigeria. I have a strong passion for developing
-                technologies.</p>
+            <div class="md">
+                <h4>Web developer and digital artist</h4>
+                <p>Hello! I'm Hemjay, a full stack developer based in Nigeria. I have a strong passion for developing
+                    technologies.</p>
+                <a href="#contact" class="availability-btn">
+                    <span class="status-dot">.</span> Available for work
+                </a>
+            </div>
+
         </div>
 
         <div class="content">
@@ -84,7 +91,7 @@
                 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-labelledby="t">
                     <defs>
                         <pattern id="imgFill" patternUnits="objectBoundingBox" width="1" height="1">
-                            <image href="./projectfolder/IMG_2040.png" x="0" y="0" width="200" height="200"
+                            <image href="projectfolder/IMG_2040.png" x="0" y="0" width="200" height="200"
                                 preserveAspectRatio="xMidYMid slice" />
                         </pattern>
                     </defs>
@@ -177,33 +184,35 @@
 
 
         <h2 class="section-title" style="margin: 70px;">MORE SKILLS</h2>
-        
+
         <div class="skills-scroll">
             <div class="skill-card">
                 <h3>PHOTOSHOP</h3>
                 <p>Skilled in Photoshop for image editing, graphic design, and creating visual assets for web and print.
                 </p>
             </div>
-           <div class="skill-card">
-            <h3>Cloud Deployment</h3>
-            <p>Experienced in hosting and managing applications on platforms like Netlify, Vercel, and GitHub Pages.</p>
-        </div>
-        <div class="skill-card">
-            <h3>API Architecture</h3>
-            <p>Testing and documenting RESTful endpoints with Postman to ensure seamless data communication.</p>
-        </div>
-        <div class="skill-card">
-            <h3>UI/UX Inspection</h3>
-            <p>Translating professional designs from Figma into pixel-perfect, responsive code.</p>
-        </div>
-        <div class="skill-card">
-            <h3>Technical Documentation</h3>
-            <p>Using Markdown to create comprehensive READMEs and project guides for better collaboration.</p>
-        </div>
-        <div class="skill-card">
-            <h3>Browser Engineering</h3>
-            <p>Leveraging Chrome DevTools for advanced debugging, performance audits, and real-time optimization.</p>
-        </div>
+            <div class="skill-card">
+                <h3>Cloud Deployment</h3>
+                <p>Experienced in hosting and managing applications on platforms like Netlify, Vercel, and GitHub Pages.
+                </p>
+            </div>
+            <div class="skill-card">
+                <h3>API Architecture</h3>
+                <p>Testing and documenting RESTful endpoints with Postman to ensure seamless data communication.</p>
+            </div>
+            <div class="skill-card">
+                <h3>UI/UX Inspection</h3>
+                <p>Translating professional designs from Figma into pixel-perfect, responsive code.</p>
+            </div>
+            <div class="skill-card">
+                <h3>Technical Documentation</h3>
+                <p>Using Markdown to create comprehensive READMEs and project guides for better collaboration.</p>
+            </div>
+            <div class="skill-card">
+                <h3>Browser Engineering</h3>
+                <p>Leveraging Chrome DevTools for advanced debugging, performance audits, and real-time optimization.
+                </p>
+            </div>
 
             <div class="skill-card">
                 <h3>Docker</h3>
@@ -283,27 +292,29 @@
         </div>
     </section>
 
-    
-<section class="section-projects" id="projects">
-    <h4>WHAT I HAVE DONE SO FAR</h4>
-    <h2>RECENT PROJECTS</h2>
-    
-    <div id="recent-projects-list" class="project-card-container normal">
+
+    <section class="section-projects" id="projects">
+        <h4>WHAT I HAVE DONE SO FAR</h4>
+        <h2>RECENT PROJECTS</h2>
+
+        <div id="recent-projects-list" class="project-card-container normal">
         </div>
 
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="projects.html" class="cv-button" style="display: inline-block; margin: 0;">View All Projects</a>
-    </div>
-</section>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="projects.html" class="cv-button" style="display: inline-block; margin: 0;">View All Projects</a>
+        </div>
+    </section>
 
     <section id="contact" class="section-contact">
         <h4>GET IN TOUCH</h4>
         <h2>CONTACT ME</h2>
-        <p style="max-width:720px; margin:12px auto; text-align:center;">Have a project or question? Click the button below to open the contact form.</p>
+        <p style="max-width:720px; margin:12px auto; text-align:center;">Have a project or question? Click the button
+            below to open the contact form.</p>
         <div style="text-align:center; margin-top:12px;">
             <a href="#contact" class="cv-button" style="display:inline-block; padding:10px 18px;">Open Contact Form</a>
         </div>
     </section>
+    </main>
     <div class="contact-popup" id="contactPopup">
         <span class="close-popup"><i class="fas fa-times"></i></span>
         <h3>Contact Me</h3>
@@ -317,10 +328,14 @@
         <div class="popup-social-links">
             <p>Or find me on</p>
             <div class="social-links popup-links">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                        class="fab fa-instagram"></i></a>
             </div>
         </div>
     </div>
@@ -337,11 +352,6 @@
 
     <footer>
         <p>&copy; 2025 Hemjay. All rights reserved.</p>
-        <div class="social-links">
-            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div>
     </footer>
     <script src="script.js"></script>
 </body>
