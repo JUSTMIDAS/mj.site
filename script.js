@@ -21,15 +21,90 @@ function showAllElements() {
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', showAllElements);
+    document.addEventListener('DOMContentLoaded', () => {
+        showAllElements();
+        displayRecent();
+        populateSkillsGrids();
+    });
 } else {
     showAllElements();
+    displayRecent();
+    populateSkillsGrids();
 }
 
 // Trigger scroll event for dynamic content
 setTimeout(() => {
     window.dispatchEvent(new Event('scroll'));
 }, 150);
+
+
+// ============================================
+// SKILLS VIEW TOGGLE & GRID POPULATION
+// ============================================
+
+function toggleSkillsView(view) {
+    const carousel = document.querySelectorAll('.carousel-view');
+    const grid = document.querySelectorAll('.grid-view');
+    const buttons = document.querySelectorAll('.view-toggle-btn');
+    
+    carousel.forEach(el => el.classList.add('hidden'));
+    grid.forEach(el => el.classList.add('hidden'));
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    if (view === 'carousel') {
+        carousel.forEach(el => el.classList.remove('hidden'));
+        document.querySelector('button[onclick*="carousel"]').classList.add('active');
+    } else {
+        grid.forEach(el => el.classList.remove('hidden'));
+        document.querySelector('button[onclick*="grid"]').classList.add('active');
+    }
+}
+
+function populateSkillsGrids() {
+    // Collect all skills from both sections
+    const allSkills = [
+        { h3: 'HTML', p: 'Proficient in semantic HTML5, creating accessible, SEO-friendly structures for responsive web applications.' },
+        { h3: 'CSS', p: 'Expert in CSS3, including Flexbox, Grid, animations, and frameworks like Tailwind for responsive design.' },
+        { h3: 'JavaScript', p: 'Advanced knowledge of ES6+, handling DOM manipulation, asynchronous programming, and modern frameworks.' },
+        { h3: 'Vite', p: 'Experienced in building and deploying fast, scalable React applications using Vite and Netlify.' },
+        { h3: 'React', p: 'Proficient in building dynamic, component-based UIs with React, including hooks and state management.' },
+        { h3: 'Node.js', p: 'Capable of developing server-side applications and APIs using Node.js with Express for scalable systems.' },
+        { h3: 'MongoDB', p: 'Proficient in NoSQL database management with MongoDB, handling unstructured data for scalable systems.' },
+        { h3: 'GraphQL', p: 'Experienced in building and querying GraphQL APIs for efficient data retrieval in modern applications.' },
+        { h3: 'PHOTOSHOP', p: 'Skilled in Photoshop for image editing, graphic design, and creating visual assets for web and print.' },
+        { h3: 'Cloud Deployment', p: 'Experienced in hosting and managing applications on platforms like Netlify, Vercel, and GitHub Pages.' },
+        { h3: 'API Architecture', p: 'Testing and documenting RESTful endpoints with Postman to ensure seamless data communication.' },
+        { h3: 'UI/UX Inspection', p: 'Translating professional designs from Figma into pixel-perfect, responsive code.' },
+        { h3: 'Technical Documentation', p: 'Using Markdown to create comprehensive READMEs and project guides for better collaboration.' },
+        { h3: 'Browser Engineering', p: 'Leveraging Chrome DevTools for advanced debugging, performance audits, and real-time optimization.' },
+        { h3: 'Docker', p: 'Capable of containerizing applications with Docker for consistent development and deployment environments.' },
+        { h3: 'Git', p: 'Expert in version control with Git, managing codebases, and collaborating via platforms like GitHub.' },
+        { h3: 'Webpack', p: 'Experienced in module bundling with Webpack for optimizing and managing front-end assets.' },
+        { h3: 'AWS', p: 'Familiar with AWS services like EC2, S3, and Lambda for cloud-based application deployment.' },
+        { h3: 'Jest', p: 'Skilled in unit and integration testing with Jest to ensure robust, error-free JavaScript applications.' }
+    ];
+    
+    const gridView1 = document.getElementById('skillsGrid');
+    const gridView2 = document.getElementById('skillsGrid2');
+    
+    if (gridView1) {
+        gridView1.innerHTML = allSkills.map(skill => `
+            <div class="skill-card">
+                <h3>${skill.h3}</h3>
+                <p>${skill.p}</p>
+            </div>
+        `).join('');
+    }
+    
+    if (gridView2) {
+        gridView2.innerHTML = allSkills.map(skill => `
+            <div class="skill-card">
+                <h3>${skill.h3}</h3>
+                <p>${skill.p}</p>
+            </div>
+        `).join('');
+    }
+}
 
 
 // ============================================
@@ -227,7 +302,7 @@ document.addEventListener('DOMContentLoaded', renderAllProjects);
 
 // recnt project  load 
 function displayRecent() {
-    console.log("Function triggered!"); // Check if this shows in console
+    console.log("displayRecent function triggered!");
     
     const list = document.getElementById('recent-projects-list');
     if (!list) {
@@ -235,17 +310,17 @@ function displayRecent() {
         return;
     }
 
-    if (typeof myProjects === 'undefined') {
-        console.error("The myProjects array is missing! Check your file links.");
+    if (typeof myProjects === 'undefined' || !Array.isArray(myProjects)) {
+        console.error("The myProjects array is missing or invalid!");
         return;
     }
 
     // Sort and slice
-    const recent = [...myProjects] // Use spread to avoid mutating original
+    const recent = [...myProjects]
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .slice(0, 2);
 
-    console.log("Projects found:", recent.length);
+    console.log("Recent projects found:", recent.length, recent);
 
     list.innerHTML = ""; 
 
@@ -254,9 +329,13 @@ function displayRecent() {
         card.className = 'project-card';
         card.setAttribute('data-tech', proj.tech || '');
         card.setAttribute('data-date', proj.date);
+        
+        // Ensure image path is correct
+        const imageSrc = proj.image.startsWith('http') ? proj.image : proj.image;
+        
         card.innerHTML = `
             <div class="project-link">
-                <img src="${proj.image}" alt="${proj.title}">
+                <img src="${imageSrc}" alt="${proj.title}" loading="lazy" onerror="this.src='IMG_2040.png'">
                 <h3>${proj.title}</h3>
                 <p>${proj.description}</p>
                 <a href="${proj.url}" class="demo-link" target="_blank">View Live Demo</a>
@@ -264,10 +343,17 @@ function displayRecent() {
         `;
         list.appendChild(card);
     });
+    
+    // Trigger scroll to apply visibility classes
+    window.dispatchEvent(new Event('scroll'));
 }
 
 // Ensures the DOM is fully loaded before running
-window.onload = displayRecent;
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', displayRecent);
+} else {
+    displayRecent();
+}
 
 
 
