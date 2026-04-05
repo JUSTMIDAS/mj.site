@@ -238,9 +238,38 @@ body.dark-mode .theme-toggle:hover {
     color: #90cdf4;
 }
 
+.icon-toggle-button,
+.theme-toggle,
+.hamburger {
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: #1e3a8a;
+    padding: 10px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.icon-toggle-button {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.icon-toggle-button:hover,
+.theme-toggle:hover,
+.hamburger:hover {
+    background: rgba(30, 58, 138, 0.15);
+    transform: translateY(-1px);
+}
+
 .hamburger {
     display: none;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: #1e3a8a;
     cursor: pointer;
     z-index: 21;
@@ -264,13 +293,14 @@ body.dark-mode .hamburger {
         top: 60px;
         left: 0;
         width: 100%;
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.95);
         padding: 20px;
         box-sizing: border-box;
+        gap: 12px;
     }
 
     body.dark-mode .nav-links {
-        background: rgba(45, 55, 72, 0.9);
+        background: rgba(45, 55, 72, 0.95);
     }
 
     .nav-links.active {
@@ -913,32 +943,36 @@ body.dark-mode .project-card a.demo-link:hover {
     .project-select,
     .filter-select {
         width: 100%;
-        max-width: 200px;
+        max-width: 240px;
         font-size: 0.9rem;
     }
     .project-card-container {
         grid-template-columns: 1fr;
     }
-    .project-card-container.normal .project-card {
+    .project-card-container.normal .project-card,
+    .project-card-container.list .project-card,
+    .project-card-container.grid .project-card {
         margin: 15px auto;
-        max-width: 100%;
-    }
-    .project-card-container.list .project-card {
         max-width: 100%;
         padding: 15px;
     }
     .project-card-container.grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        grid-template-columns: 1fr;
+        gap: 16px;
         max-width: 100%;
     }
-    .project-card-container.grid .project-card {
-        padding: 8px;
-    }
     .project-card-container.grid .project-card img {
-        max-height: 100px;
+        max-height: 180px;
         width: 100%;
         object-fit: cover;
+    }
+    .project-card-container.grid .project-card .project-card-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .project-card-container.grid .project-card .project-card-actions a,
+    .project-card-container.grid .project-card .project-card-actions button {
+        width: 100%;
     }
 }
 
@@ -988,8 +1022,32 @@ body.dark-mode .skills-view-toggle button {
 }
 
 .skills-grid-view {
+    display: grid !important; /* Forces the grid to exist */
+    grid-template-columns: 1fr 1fr !important; /* Hard-coded 2 columns */
+    gap: 10px !important;
+    padding: 10px;
+    width: 100%;
+}
+
+.skills-grid-view .skill-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box; /* Essential to keep padding inside the card */
+}
+
+/* Tablet & Desktop: This rule kicks in for screens wider than 768px */
+@media (min-width: 768px) {
+    .skills-grid-view {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+    }
+}
+
+.skills-grid-view {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
     gap: 20px;
     max-width: 1200px;
     margin: 20px auto;

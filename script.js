@@ -20,21 +20,24 @@ function showAllElements() {
     });
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        showAllElements();
-        displayRecent();
-        populateSkillsGrids();
-    });
-} else {
+function initPage() {
     showAllElements();
-    displayRecent();
     populateSkillsGrids();
+    displayRecent();
+    if (document.querySelector('#all-projects-list')) {
+        renderAllProjects();
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPage);
+} else {
+    initPage();
 }
 
 // Trigger scroll event for dynamic content
 setTimeout(() => {
-    window.dispatchEvent(new Event('scroll'));
+    window.dispatchEvent(new Event('scroll')); 
 }, 150);
 
 
@@ -43,68 +46,36 @@ setTimeout(() => {
 // ============================================
 
 function toggleSkillsView(view) {
-    const carousel = document.querySelectorAll('.carousel-view');
-    const grid = document.querySelectorAll('.grid-view');
+    const carouselViews = document.querySelectorAll('.carousel-view');
+    const gridViews = document.querySelectorAll('.grid-view');
     const buttons = document.querySelectorAll('.view-toggle-btn');
-    
-    carousel.forEach(el => el.classList.add('hidden'));
-    grid.forEach(el => el.classList.add('hidden'));
-    buttons.forEach(btn => btn.classList.remove('active'));
-    
-    if (view === 'carousel') {
-        carousel.forEach(el => el.classList.remove('hidden'));
-        document.querySelector('button[onclick*="carousel"]').classList.add('active');
-    } else {
-        grid.forEach(el => el.classList.remove('hidden'));
-        document.querySelector('button[onclick*="grid"]').classList.add('active');
+
+    carouselViews.forEach(el => el.classList.toggle('hidden', view !== 'carousel'));
+    gridViews.forEach(el => el.classList.toggle('hidden', view !== 'grid'));
+
+    buttons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.view === view);
+    });
+}
+
+
+
+function populateSkillsGrids() {
+    const carousel1 = document.getElementById('skillsCarousel');
+    const carousel2 = document.getElementById('skillsCarousel2');
+    const grid1 = document.getElementById('skillsGrid');
+    const grid2 = document.getElementById('skillsGrid2');
+
+    // Meticulously copy the content from the carousel to the grid
+    if (carousel1 && grid1) {
+        grid1.innerHTML = carousel1.innerHTML;
+    }
+
+    if (carousel2 && grid2) {
+        grid2.innerHTML = carousel2.innerHTML;
     }
 }
 
-function populateSkillsGrids() {
-    // Collect all skills from both sections
-    const allSkills = [
-        { h3: 'HTML', p: 'Proficient in semantic HTML5, creating accessible, SEO-friendly structures for responsive web applications.' },
-        { h3: 'CSS', p: 'Expert in CSS3, including Flexbox, Grid, animations, and frameworks like Tailwind for responsive design.' },
-        { h3: 'JavaScript', p: 'Advanced knowledge of ES6+, handling DOM manipulation, asynchronous programming, and modern frameworks.' },
-        { h3: 'Vite', p: 'Experienced in building and deploying fast, scalable React applications using Vite and Netlify.' },
-        { h3: 'React', p: 'Proficient in building dynamic, component-based UIs with React, including hooks and state management.' },
-        { h3: 'Node.js', p: 'Capable of developing server-side applications and APIs using Node.js with Express for scalable systems.' },
-        { h3: 'MongoDB', p: 'Proficient in NoSQL database management with MongoDB, handling unstructured data for scalable systems.' },
-        { h3: 'GraphQL', p: 'Experienced in building and querying GraphQL APIs for efficient data retrieval in modern applications.' },
-        { h3: 'PHOTOSHOP', p: 'Skilled in Photoshop for image editing, graphic design, and creating visual assets for web and print.' },
-        { h3: 'Cloud Deployment', p: 'Experienced in hosting and managing applications on platforms like Netlify, Vercel, and GitHub Pages.' },
-        { h3: 'API Architecture', p: 'Testing and documenting RESTful endpoints with Postman to ensure seamless data communication.' },
-        { h3: 'UI/UX Inspection', p: 'Translating professional designs from Figma into pixel-perfect, responsive code.' },
-        { h3: 'Technical Documentation', p: 'Using Markdown to create comprehensive READMEs and project guides for better collaboration.' },
-        { h3: 'Browser Engineering', p: 'Leveraging Chrome DevTools for advanced debugging, performance audits, and real-time optimization.' },
-        { h3: 'Docker', p: 'Capable of containerizing applications with Docker for consistent development and deployment environments.' },
-        { h3: 'Git', p: 'Expert in version control with Git, managing codebases, and collaborating via platforms like GitHub.' },
-        { h3: 'Webpack', p: 'Experienced in module bundling with Webpack for optimizing and managing front-end assets.' },
-        { h3: 'AWS', p: 'Familiar with AWS services like EC2, S3, and Lambda for cloud-based application deployment.' },
-        { h3: 'Jest', p: 'Skilled in unit and integration testing with Jest to ensure robust, error-free JavaScript applications.' }
-    ];
-    
-    const gridView1 = document.getElementById('skillsGrid');
-    const gridView2 = document.getElementById('skillsGrid2');
-    
-    if (gridView1) {
-        gridView1.innerHTML = allSkills.map(skill => `
-            <div class="skill-card">
-                <h3>${skill.h3}</h3>
-                <p>${skill.p}</p>
-            </div>
-        `).join('');
-    }
-    
-    if (gridView2) {
-        gridView2.innerHTML = allSkills.map(skill => `
-            <div class="skill-card">
-                <h3>${skill.h3}</h3>
-                <p>${skill.p}</p>
-            </div>
-        `).join('');
-    }
-}
 
 
 // ============================================
@@ -161,13 +132,15 @@ if (hamburger && navLinks) {
 function iconDisable(status) {
     const icons = document.querySelectorAll('.icon');
     icons.forEach(icon => {
+        // If status is 'visible', we want to DISABLE (add class)
         if (status === 'visible') {
             icon.classList.add('disabled');
-        } else {
+        } 
+        // If status is 'hidden', we want to ENABLE (remove class)
+        else if (status === 'hidden') {
             icon.classList.remove('disabled');
         }
     });
-    
 }
 
 // Theme toggle (light/dark mode)
@@ -201,26 +174,35 @@ function toggleProjects(view) {
     }
     window.dispatchEvent(new Event('scroll'));
 }
- 
 
+function setProjectCategory(category) {
+    document.querySelectorAll('.project-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.category === category);
+    });
 
-
+    document.querySelectorAll('.project-card').forEach(card => {
+        const cardCategory = card.dataset.category || 'all';
+        card.style.display = category === 'all' || cardCategory === category ? 'block' : 'none';
+    });
+}
 
 const myProjects = [
     {
-        title: "Event Booking System",
-        description: "An event management platform with booking and payment features.",
-        tech: "typescript,graphql,nodejs,postgresql",
-        date: "2022-10-20",
-        image: "IMG_2040.png",
-        url: "https://example.com/demo10",
+        title: "IRON PULSE",
+        description: "A fitness website showcasing workout plan and gym equipment",
+        tech: "html,tailwind,expressjs,javascript",
+        category: "web",
+        date: "2026-10-20",
+        image: "projectfolder/ironpulse.png",
+        url: "https://justmidas.github.io/ironpulse-/",
         host: "Vercel",
-        stackText: "TypeScript, GraphQL, Node.js, PostgreSQL"
+        stackText: "html, css, tailwind, expressjs, javascript"
     },
     {
         title: "Fitness Tracker",
         description: "A mobile-responsive fitness app for logging workouts and tracking progress.",
         tech: "react,nodejs,mongodb",
+        category: "web",
         date: "2020-09-10",
         image: "IMG_2040.png",
         url: "https://example.com/demo9",
@@ -231,6 +213,7 @@ const myProjects = [
         title: "shop it",
         description: "An e-commerce platform for online shopping with cart and payment integration.",
         tech: "react,nodejs,mongodb",
+        category: "design",
         date: "2021-09-10",
         image: "IMG_2040.png",
         url: "https://example.com/demo9",
@@ -238,20 +221,33 @@ const myProjects = [
         stackText: "React, Node.js, MongoDB, Chart.js"
     },
     {
-        title: "iron pulse ",
-        description: "A fitness website showcasing workout plans and gym equipment.",
-        tech: "html,tailwind,js",
-        date: "2026-02-02",
-        image: "projectfolder/ironpulse.png",
-        url: "https://example.com/demo9",
-        host: "Netlify",
-        stackText: "HTML, Tailwind CSS, JavaScript"
+        title: "Promo Video Suite",
+        description: "A video editing showcase for promotional content and short brand films.",
+        tech: "premiere,aftereffects,video",
+        category: "video",
+        date: "2024-12-05",
+        image: "projectfolder/video-editing.png",
+        url: "https://example.com/demo-video",
+        host: "Vimeo",
+        stackText: "Adobe Premiere, After Effects, Motion Graphics"
+    },
+    {
+        title: "Brand Collateral Pack",
+        description: "A Photoshop-driven design project for brand identity and marketing assets.",
+        tech: "photoshop,illustrator,design",
+        category: "photoshop",
+        date: "2025-03-18",
+        image: "projectfolder/photoshop-pack.png",
+        url: "https://example.com/demo-design",
+        host: "Behance",
+        stackText: "Adobe Photoshop, Adobe Illustrator, Brand Design"
     },
     {
         title: "naahla",
         description: "A portfolio website for a designer with interactive galleries.",
         tech: "react,tailwind,mongodb",
-        date: "2026-0git1-14",
+        category: "web",
+        date: "2026-01-14",
         image: "projectfolder/naahla.png",
         url: "https://naahla.vercel.app/",
         host: "Vercel",
@@ -265,32 +261,31 @@ const myProjects = [
 
 
 function renderAllProjects() {
-    const grid = document.querySelector('.project-card-container');
+    const grid = document.getElementById('all-projects-list');
     if (!grid) return;
 
-    grid.innerHTML = ""; // Clear existing static cards
+    grid.innerHTML = "";
 
     myProjects.forEach(proj => {
         const card = document.createElement('div');
         card.className = 'project-card';
         card.setAttribute('data-tech', proj.tech);
         card.setAttribute('data-date', proj.date);
+        card.setAttribute('data-category', proj.category || 'web');
         card.innerHTML = `
-            <a href="${proj.url}" class="project-link" target="_blank">
-                <img src="${proj.image}" alt="${proj.title}" loading="lazy">
-                <h3>${proj.title}</h3>
-                <p>${proj.description}</p>
-                <p><strong>Tech Stack:</strong> ${proj.stackText}</p>
-                <p>Hosted on ${proj.host}</p>
-                <a href="${proj.url}" class="demo-link">View Live Demo</a>
-            </a>
-            <span class="case-study-link" onclick="showCaseStudy('${proj.title}')">Read Case Study</span>
+            <img src="${proj.image}" alt="${proj.title}" loading="lazy">
+            <h3>${proj.title}</h3>
+            <p>${proj.description}</p>
+            <p><strong>Tech Stack:</strong> ${proj.stackText}</p>
+            <p>Hosted on ${proj.host}</p>
+            <div class="project-card-actions">
+                <a href="${proj.url}" class="demo-link" target="_blank" rel="noopener noreferrer">View Live Demo</a>
+                <button type="button" class="case-study-link" onclick="showCaseStudy('${proj.title}')">Read Case Study</button>
+            </div>
         `;
         grid.appendChild(card);
     });
 }
-
-document.addEventListener('DOMContentLoaded', renderAllProjects);
 
 
 

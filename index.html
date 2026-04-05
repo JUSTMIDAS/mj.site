@@ -47,14 +47,12 @@
     <header>
         <nav class="nav-menu">
             <div class="nav-logo">mj</div>
-            <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
-            <button onclick="iconDisable('visible')">disable icon</button>
-            <div class="hamburger"><i class="fas fa-bars"></i></div>
+            <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="icon-toggle-button" type="button" onclick="iconDisable('visible')">Toggle icons</button>
+            <button class="hamburger" type="button" aria-label="Open navigation"><i class="fas fa-bars"></i></button>
             <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="timeline.html">Education</a>
-                <a href="timeline.html#work-history">Work</a>
+                <a href="timeline.html">Education and Work history</a>
                 <a href="#services">Services</a>
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
@@ -140,8 +138,8 @@
         <h1 class="section-heading">SKILLS</h1>
         
         <div class="skills-view-toggle">
-            <button class="view-toggle-btn active" onclick="toggleSkillsView('carousel')">Carousel View</button>
-            <button class="view-toggle-btn" onclick="toggleSkillsView('grid')">All Skills (Grid)</button>
+            <button class="view-toggle-btn active" data-view="carousel" type="button" onclick="toggleSkillsView('carousel')">Carousel View</button>
+            <button class="view-toggle-btn" data-view="grid" type="button" onclick="toggleSkillsView('grid')">All Skills (Grid)</button>
         </div>
 
         <div class="skills-scroll carousel-view" id="skillsCarousel">

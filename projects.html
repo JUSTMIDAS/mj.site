@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Dancing+Script:wght@400..700&family=Marck+Script&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="project-page">
     <div class="container" id="home">
         <div class="icons">
             <div class="icon" style="top: 10%; left: 10%;"><i class="fas fa-lightbulb"></i></div>
@@ -70,7 +70,15 @@
             </select>
         </div>
 
-        <div class="project-card-container normal">
+        <div class="project-tabs">
+            <button class="project-tab active" type="button" data-category="all" onclick="setProjectCategory('all')">All</button>
+            <button class="project-tab" type="button" data-category="web" onclick="setProjectCategory('web')">Web Dev</button>
+            <button class="project-tab" type="button" data-category="video" onclick="setProjectCategory('video')">Video Editing</button>
+            <button class="project-tab" type="button" data-category="photoshop" onclick="setProjectCategory('photoshop')">Photoshop</button>
+            <button class="project-tab" type="button" data-category="design" onclick="setProjectCategory('design')">Design</button>
+        </div>
+
+        <div id="all-projects-list" class="project-card-container normal">
            
         </div>
     </section>
@@ -80,8 +88,6 @@
         <div id="caseStudyContent" style="padding: 20px; overflow-y: auto; max-height: 80vh;">
         </div>
     </div>
-
-    </main>
 
 
 
@@ -115,6 +121,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <footer>
         <p>&copy; 2025 Hemjay. All rights reserved.</p>
