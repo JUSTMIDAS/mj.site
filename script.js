@@ -20,6 +20,10 @@ function showAllElements() {
     });
 }
 
+
+
+
+
 function initPage() {
     showAllElements();
     populateSkillsGrids();
@@ -204,7 +208,7 @@ const myProjects = [
         tech: "react,nodejs,mongodb",
         category: "web",
         date: "2020-09-10",
-        image: "IMG_2040.png",
+        image: "projectfolder/naahla.png",
         url: "https://example.com/demo9",
         host: "Netlify",
         stackText: "React, Node.js, MongoDB, Chart.js"
@@ -215,8 +219,9 @@ const myProjects = [
         tech: "react,nodejs,mongodb",
         category: "design",
         date: "2021-09-10",
-        image: "IMG_2040.png",
-        url: "https://example.com/demo9",
+        image: "projectfolder/ironpulse.png",
+                url: "https://example.com/demo9",
+
         host: "Netlify",
         stackText: "React, Node.js, MongoDB, Chart.js"
     },
@@ -226,7 +231,7 @@ const myProjects = [
         tech: "premiere,aftereffects,video",
         category: "video",
         date: "2024-12-05",
-        image: "projectfolder/video-editing.png",
+        image: "projectfolder/naahla.png",
         url: "https://example.com/demo-video",
         host: "Vimeo",
         stackText: "Adobe Premiere, After Effects, Motion Graphics"
@@ -237,7 +242,7 @@ const myProjects = [
         tech: "photoshop,illustrator,design",
         category: "photoshop",
         date: "2025-03-18",
-        image: "projectfolder/photoshop-pack.png",
+        image: "projectfolder/ironpulse.png",
         url: "https://example.com/demo-design",
         host: "Behance",
         stackText: "Adobe Photoshop, Adobe Illustrator, Brand Design"
@@ -276,11 +281,11 @@ function renderAllProjects() {
             <img src="${proj.image}" alt="${proj.title}" loading="lazy">
             <h3>${proj.title}</h3>
             <p>${proj.description}</p>
-            <p><strong>Tech Stack:</strong> ${proj.stackText}</p>
-            <p>Hosted on ${proj.host}</p>
+            <p class="tech-stack"> <strong>Tech Stack:</strong> ${proj.stackText}</p>
+           
             <div class="project-card-actions">
-                <a href="${proj.url}" class="demo-link" target="_blank" rel="noopener noreferrer">View Live Demo</a>
-                <button type="button" class="case-study-link" onclick="showCaseStudy('${proj.title}')">Read Case Study</button>
+                <a href="${proj.url}" class="demo-link" target="_blank" rel="noopener noreferrer">View Live/ Demo</a>
+                <!-- <button type="button" class="case-study-link" onclick="showCaseStudy('${proj.title}')">Read Case Study</button> -->
             </div>
         `;
         grid.appendChild(card);
@@ -333,7 +338,7 @@ function displayRecent() {
                 <img src="${imageSrc}" alt="${proj.title}" loading="lazy" onerror="this.src='IMG_2040.png'">
                 <h3>${proj.title}</h3>
                 <p>${proj.description}</p>
-                <a href="${proj.url}" class="demo-link" target="_blank">View Live Demo</a>
+                <a href="${proj.url}" class="demo-link" target="_blank">View Live/ Demo</a>
             </div>
         `;
         list.appendChild(card);
